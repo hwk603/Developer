@@ -33,12 +33,12 @@
           <div class="form-group">
             <label for="code" class="col-sm-2 control-label">验证码</label>
             <div class="col-sm-10">
-              <input type="text" name="code" id="code" class="form-control" placeholder="未接来电后四位" style="width:80%;"></input>
+              <input type="text" name="authenticateCode" id="authenticateCode" class="form-control" placeholder="未接来电后四位" style="width:80%;"></input>
             </div>
           </div>
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-              <input type="button" class="btn btn-default" value="注册" onclick="res()"></input>
+              <input type="button" class="btn btn-default" value="注册" onclick="Authenticate()"></input>
             </div>
           </div>
         </form>
@@ -57,12 +57,11 @@
   function getCode(){
     var number = document.getElementById("number").value;
     $.post('agent.php',{'number':number},function(data){
-      //alert("code:"+data);
       result = data;
     });
   }
-  function res(){
-    var code = document.getElementById("code").value;
+  function Authenticate(){
+    var code = document.getElementById("authenticateCode").value;
     if(code===result){
       alert("注册成功!");
     }
