@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>基于腾讯文智的情感分析</title>
+    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header></header>
+        <div class="panel panel-primary" style="width:100%;margin-left:auto;margin-right:auto;">
+            <div class="panel-body">
+                <legend>基于腾讯文智的情感分析</legend>
+                <form class="form-horizontal" action="" method="post">
+                    <div class="form-group">
+                        <label for="phoneNumber" class="col-sm-2 control-label">文本</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" rows="3" name="text" id="text">实验楼是国内领先的IT技术实训平台，创新的实验驱动教学模式，以就业为导向，为IT相关专业的在校学生及从业者提供编程、运维、测试、云计算、大数据、数据库等。
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <input type="button" class="btn btn-default" value="分析" onclick="drawChart()"></input>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="piechart" style="width: 900px; height: 500px;">
+        </div>
+    </div>
+</body>
+
+<script>
+
+    google.charts.load('current', {
+        'packages': ['corechart']
+    });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        var text = document.getElementById("text").value;
+        $.post('demo.php', {
+            'text': text
+        }, function(data) {
+            var obj = jQuery.parseJSON(data);
+            positive = obj.positive;
+            negative = obj.negative;
+            console.debug(data);
+            console.log(text);
+            var data = google.visualization.arrayToDataTable([
+                ['情绪', 'Percentage'],
+                ['正面', positive],
+                ['负面', negative]
+            ]);
+            var options = {
+                title: '情绪'
+            };
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            chart.draw(data, options);
+        });
+    }
+</script>
+
+</html>
