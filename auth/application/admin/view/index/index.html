@@ -1,0 +1,99 @@
+﻿{extend name="publics/base" /} {block name="body"}
+<div class="breadcrumbs" id="breadcrumbs">
+	<script type="text/javascript">
+		try {
+			ace.settings.check('breadcrumbs', 'fixed')
+		} catch (e) {}
+	</script>
+
+	<ul class="breadcrumb">
+		<li>
+			<i class="icon-home home-icon"></i>
+			<a href="#">首页</a>
+		</li>
+		<li class="active">控制台</li>
+	</ul>
+	<!-- .breadcrumb -->
+</div>
+
+<div class="page-content">
+	<div class="page-header">
+		<h1>
+					控制台
+					<small>
+						<i class="icon-double-angle-right"></i>
+						 查看
+					</small>
+				</h1>
+	</div>
+	<!-- /.page-header -->
+
+	<div class="row">
+		<div class="col-xs-12">
+			<!-- PAGE CONTENT BEGINS -->
+
+			<div class="alert alert-block alert-success">
+				<button type="button" class="close" data-dismiss="alert">
+							<i class="icon-remove"></i>
+						</button>
+
+				<i class="icon-ok green"></i> 欢迎使用实验楼后台权限管理系统（
+				<strong class="green">
+							Ace后台管理系统
+							<small>(v1.2)</small>
+						</strong> ,轻量级好用的后台管理系统模版. ）
+			</div>
+
+			<div class="panel panel-primary col-md-6">
+				<div class="panel-heading">
+					<h3 class="panel-title">系统信息</h3>
+				</div>
+				<div class="panel-body">
+					<ul class="list-group">
+						<li class="list-group-item list-group-item-success">操作系统：{$info.sysinfo.system}</li>
+						<li class="list-group-item list-group-item-info">运行方式：{$info.sysinfo.mode}</li>
+						<li class="list-group-item list-group-item-warning">PHP版本：{$info.sysinfo.php_version}</li>
+						<li class="list-group-item list-group-item-danger">MYSQL版本：{$info.sysinfo.mysql_version}</li>
+						<li class="list-group-item list-group-item-danger">Apache版本：{$info.sysinfo.apache_version}</li>
+						<li class="list-group-item list-group-item-danger">上传限制：{$info.sysinfo.max_upload}</li>
+						<li class="list-group-item list-group-item-danger">GD库版本：{$info.sysinfo.gd_version}</li>
+						<li class="list-group-item list-group-item-danger">内存使用：{$info.sysinfo.memery}</li>
+						<li class="list-group-item list-group-item-danger">服务器语言：{$info.sysinfo.language}</li>
+						<li class="list-group-item list-group-item-danger">Zend版本：{$info.sysinfo.zend_version}</li>
+						<li class="list-group-item list-group-item-danger">服务器Web端口：{$info.sysinfo.port}</li>
+						<li class="list-group-item list-group-item-danger">当前前进程id：{$info.sysinfo.user}</li>
+						<li class="list-group-item list-group-item-danger">当前前进程用户id：{$info.sysinfo.current_user_name}</li>
+						<li class="list-group-item list-group-item-danger">系统版本号：{$info.sysinfo.sys_version}</li>
+
+					</ul>
+				</div>
+			</div>
+
+			<div class="panel panel-primary col-md-6">
+				<div class="panel-heading">
+					<h3 class="panel-title">个人信息</h3>
+				</div>
+				<div class="panel-body">
+					<div class="panel-body">
+						<ul class="list-group">
+							<li class="list-group-item list-group-item-success">用户id：{$info.profile.uid}</li>
+							<li class="list-group-item list-group-item-info">用户名：{$info.profile.name}</li>
+							<li class="list-group-item list-group-item-warning">登录邮箱：{$info.profile.email}</li>
+							<li class="list-group-item list-group-item-danger">所属角色：{$info.profile.group}</li>
+							<li class="list-group-item list-group-item-danger">上次登录IP：{$info.profile.last_login_ip}</li>
+							<li class="list-group-item list-group-item-danger">上次登录地址：{$info.profile.last_login_location}</li>
+							<li class="list-group-item list-group-item-danger">上次登录时间：{$info.profile.last_login_time}</li>
+							<li class="list-group-item list-group-item-danger">创建时间：{$info.profile.create_time}</li>
+							<li class="list-group-item list-group-item-danger">账号状态：{$info.profile.status == 1 ? "使用中" : "已锁定"}</li>
+							<li class="list-group-item list-group-item-danger">累计登录次数：{$info.profile.login_num}</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+</div>
+
+{/block}
